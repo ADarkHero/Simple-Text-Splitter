@@ -1,11 +1,22 @@
 ﻿Imports System.IO
+Imports System.Text
 
 Public Class Form1
     Private Sub sourceButton_Click(sender As Object, e As EventArgs) Handles sourceButton.Click
         Dim OpenFileDialog1 As New OpenFileDialog
 
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            sourceTextBox.Text = OpenFileDialog1.FileName
+            sourceTextBox.Text = OpenFileDialog1.FileName ' Writes path + filename to source textbox
+
+            ' Is there no easy way to get the fckng path without the file name?
+            Dim pathArray As Array = OpenFileDialog1.FileName.Split("\")
+            Dim pathString As String = ""
+
+            For i As Integer = 0 To pathArray.Length - 2
+                pathString += pathArray(i) + "\"
+            Next
+
+            destinationTextBox.Text = pathString ' Writes path to destination textbox
         End If
     End Sub
 
@@ -20,7 +31,7 @@ Public Class Form1
     Private Sub splitButton_Click(sender As Object, e As EventArgs) Handles splitButton.Click
         Try
             ' Open the file using a stream reader.
-            Using sr As New StreamReader(sourceTextBox.Text)
+            Using sr As New StreamReader(sourceTextBox.Text, Encoding.GetEncoding(1252))
 
                 Dim line As String
                 Dim linecount As Integer = 0
