@@ -34,6 +34,7 @@ Public Class Form1
             Using sr As New StreamReader(sourceTextBox.Text, Encoding.GetEncoding(1252))
 
                 Dim line As String
+                Dim firstline As String = ""
                 Dim linecount As Integer = 0
                 Dim filecount As Integer = 1
                 Do ' Loop until there is no line in the file left
@@ -43,6 +44,15 @@ Public Class Form1
                     Using sw As New StreamWriter(filepath, True) ' Write new text files
 
                         line = sr.ReadLine() ' Read from source file
+
+                        If keepFirstLine.Checked Then ' Should the first line of the file be written to every new file?
+                            If linecount = 0 Then
+                                firstline = line
+                            ElseIf (linecount Mod Convert.ToInt64(splitTextBox.Text) = 0) Then ' At the start of a new file, write the first line
+                                sw.WriteLine(firstline)
+                            End If
+                        End If
+
                         linecount += 1
 
                         If (linecount Mod Convert.ToInt64(splitTextBox.Text) = 0) Then ' Go to next file, when the division rest is zero

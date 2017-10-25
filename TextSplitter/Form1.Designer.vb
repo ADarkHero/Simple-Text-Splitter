@@ -31,6 +31,7 @@ Partial Class Form1
         Me.splitTextBox = New System.Windows.Forms.TextBox()
         Me.sourceButton = New System.Windows.Forms.Button()
         Me.destinationButton = New System.Windows.Forms.Button()
+        Me.keepFirstLine = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'sourceTextBox
@@ -114,11 +115,24 @@ Partial Class Form1
         Me.destinationButton.Text = "...."
         Me.destinationButton.UseVisualStyleBackColor = True
         '
+        'keepFirstLine
+        '
+        Me.keepFirstLine.AutoSize = True
+        Me.keepFirstLine.Checked = True
+        Me.keepFirstLine.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.keepFirstLine.Location = New System.Drawing.Point(13, 221)
+        Me.keepFirstLine.Name = "keepFirstLine"
+        Me.keepFirstLine.Size = New System.Drawing.Size(89, 17)
+        Me.keepFirstLine.TabIndex = 104
+        Me.keepFirstLine.Text = "Keep first line"
+        Me.keepFirstLine.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 305)
+        Me.Controls.Add(Me.keepFirstLine)
         Me.Controls.Add(Me.destinationButton)
         Me.Controls.Add(Me.sourceButton)
         Me.Controls.Add(Me.splitTextBox)
@@ -144,4 +158,5 @@ Partial Class Form1
     Friend WithEvents splitTextBox As TextBox
     Friend WithEvents sourceButton As Button
     Friend WithEvents destinationButton As Button
+    Friend WithEvents keepFirstLine As CheckBox
 End Class
